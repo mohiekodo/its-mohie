@@ -40,18 +40,21 @@ export const projects: ProjectItem[] = [
     description: 'Scalable backend infrastructure powering recruitment solutions',
     tech: ['Node.js', 'Express.js', 'TypeScript', 'AWS'],
     highlights: ['Cross-functional team leadership', 'Enterprise-grade solutions'],
+    image: '/assets/projects/seek-architecture.svg',
   },
   {
     title: 'PropertyGuru Core Platform',
     description: 'Modernized legacy systems while implementing innovative features',
     tech: ['Full-stack development', 'System design'],
     highlights: ['Distributed team coordination', 'Architectural evolution'],
+    image: '/assets/projects/propertyguru-platform.svg',
   },
   {
     title: 'Supahands SelfServe Platform',
     description: 'Data cleaning platform with microservices architecture',
     tech: ['React.js', 'Next.js', 'REST', 'Microservices'],
     highlights: ['Performance optimization', 'Automated testing'],
+    image: '/assets/projects/supahands-selfserve.svg',
   },
 ]
 
