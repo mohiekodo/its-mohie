@@ -13,19 +13,69 @@ function App() {
     <>
       <Helmet>
         <title>Mohieddin Tanna — Strategic Tech Leader</title>
-        <meta name="description" content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams." />
+        <meta
+          name="description"
+          content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams."
+        />
+        <meta name="theme-color" content="#1a1b26" />
+        <link rel="canonical" href="https://its-mohie.com/" />
+
+        {/* Open Graph */}
         <meta property="og:title" content="Mohieddin Tanna — Strategic Tech Leader" />
-        <meta property="og:description" content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams." />
+        <meta
+          property="og:description"
+          content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams."
+        />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://its-mohie.com/" />
+        <meta property="og:image" content="https://its-mohie.com/og-image.jpg" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Mohieddin Tanna — Strategic Tech Leader" />
+        <meta
+          name="twitter:description"
+          content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams."
+        />
+        <meta name="twitter:image" content="https://its-mohie.com/og-image.jpg" />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Mohieddin Tanna',
+            jobTitle: 'Lead Engineer',
+            url: 'https://its-mohie.com/',
+            sameAs: ['https://www.linkedin.com/in/mohie93'],
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Kuala Lumpur',
+              addressCountry: 'Malaysia',
+            },
+          })}
+        </script>
       </Helmet>
       <Layout>
         <main>
-          <section id="hero"><Hero /></section>
-          <section id="about"><About /></section>
-          <section id="experience"><Experience /></section>
-          <section id="projects"><Projects /></section>
-          <section id="leadership"><Leadership /></section>
-          <section id="contact"><Contact /></section>
+          <section id="hero">
+            <Hero />
+          </section>
+          <section id="about">
+            <About />
+          </section>
+          <section id="experience">
+            <Experience />
+          </section>
+          <section id="projects">
+            <Projects />
+          </section>
+          <section id="leadership">
+            <Leadership />
+          </section>
+          <section id="contact">
+            <Contact />
+          </section>
         </main>
       </Layout>
     </>
@@ -33,4 +83,3 @@ function App() {
 }
 
 export default App
-
