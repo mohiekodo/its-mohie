@@ -7,8 +7,19 @@
   color-scheme: dark;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed header when using #hash links */
+section[id] {
+  scroll-margin-top: 4.5rem; /* header height (h-14 = 3.5rem) + spacing */
 }
 
 body {
@@ -18,22 +29,41 @@ body {
 
 /* Keyframes referenced by Tailwind animation shortcuts */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(60px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes glowPulse {
-  from { box-shadow: 0 0 0 rgba(247, 186, 46, 0.0); }
-  to { box-shadow: 0 0 20px rgba(247, 186, 46, 0.4); }
+  from {
+    box-shadow: 0 0 0 rgba(247, 186, 46, 0);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(247, 186, 46, 0.4);
+  }
 }
-

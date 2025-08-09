@@ -4,9 +4,9 @@ import Footer from './Footer'
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="pt-16">{children}</div>
+      <main className="pt-16 flex-1">{children}</main>
       <Footer />
     </div>
   )
