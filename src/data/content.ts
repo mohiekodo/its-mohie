@@ -1,4 +1,4 @@
-import { ExperienceItem, ProjectItem } from '@types/index'
+import { ExperienceItem, ProjectItem } from '@app-types/index'
 
 export const experiences: ExperienceItem[] = [
   {
@@ -9,8 +9,8 @@ export const experiences: ExperienceItem[] = [
       'Leading high-impact teams in Candidates and Talent Consultants domains',
       'Architecting robust backend infrastructure with Node.js, TypeScript, AWS',
       'Establishing engineering excellence and quality frameworks',
-      'Strategic technical roadmap development'
-    ]
+      'Strategic technical roadmap development',
+    ],
   },
   {
     company: 'PropertyGuru Group',
@@ -19,8 +19,8 @@ export const experiences: ExperienceItem[] = [
     highlights: [
       'Spearheaded distributed development teams',
       'Drove architectural evolution and system modernization',
-      'Strategic alignment between technical execution and product vision'
-    ]
+      'Strategic alignment between technical execution and product vision',
+    ],
   },
   {
     company: 'Supahands',
@@ -29,9 +29,9 @@ export const experiences: ExperienceItem[] = [
     highlights: [
       'Led cross-functional teams on innovative platform solutions',
       'Mentored junior developers and fostered knowledge sharing',
-      'System architecture decisions and performance optimization'
-    ]
-  }
+      'System architecture decisions and performance optimization',
+    ],
+  },
 ]
 
 export const projects: ProjectItem[] = [
@@ -39,20 +39,20 @@ export const projects: ProjectItem[] = [
     title: 'Enterprise Platform Architecture (SEEK)',
     description: 'Scalable backend infrastructure powering recruitment solutions',
     tech: ['Node.js', 'Express.js', 'TypeScript', 'AWS'],
-    highlights: ['Cross-functional team leadership', 'Enterprise-grade solutions']
+    highlights: ['Cross-functional team leadership', 'Enterprise-grade solutions'],
   },
   {
     title: 'PropertyGuru Core Platform',
     description: 'Modernized legacy systems while implementing innovative features',
     tech: ['Full-stack development', 'System design'],
-    highlights: ['Distributed team coordination', 'Architectural evolution']
+    highlights: ['Distributed team coordination', 'Architectural evolution'],
   },
   {
     title: 'Supahands SelfServe Platform',
     description: 'Data cleaning platform with microservices architecture',
     tech: ['React.js', 'Next.js', 'REST', 'Microservices'],
-    highlights: ['Performance optimization', 'Automated testing']
-  }
+    highlights: ['Performance optimization', 'Automated testing'],
+  },
 ]
 
 export const skills = {
@@ -62,6 +62,5 @@ export const skills = {
   databases: ['SQL', 'NoSQL'],
   cloud: ['AWS'],
   devops: ['BuildKite', 'GitHub Actions'],
-  leadership: ['People Management', 'SDLC Management']
+  leadership: ['People Management', 'SDLC Management'],
 }
-
