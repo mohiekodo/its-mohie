@@ -19,6 +19,7 @@ function App() {
         />
         <meta name="theme-color" content="#1a1b26" />
         <link rel="canonical" href="https://its-mohie.com/" />
+        <link rel="icon" type="image/svg+xml" href="/assets/brand/mt-icon.svg" />
 
         {/* Open Graph */}
         <meta property="og:title" content="Mohieddin Tanna — Strategic Tech Leader" />

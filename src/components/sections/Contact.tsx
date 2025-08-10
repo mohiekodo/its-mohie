@@ -28,9 +28,6 @@ const Contact: React.FC = () => {
               </a>
             </p>
             <p>
-              <span className="text-text-primary">Phone:</span> {SITE.phone}
-            </p>
-            <p>
               <span className="text-text-primary">Location:</span> {SITE.location}
             </p>
           </div>

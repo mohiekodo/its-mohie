@@ -23,10 +23,18 @@ const Header: React.FC = () => {
       <Container className="flex h-14 items-center justify-between">
         <a
           href="#hero"
-          className="font-mono text-accent-gold hover:opacity-90 transition"
+          className="flex items-center gap-2 font-mono text-accent-gold hover:opacity-90 transition"
           aria-label="Go to top"
         >
-          Mohieddin Tanna
+          <img
+            src="/assets/brand/mt-icon.svg"
+            alt="MT icon"
+            className="h-6 w-6"
+            width={24}
+            height={24}
+            loading="eager"
+          />
+          <span className="hidden sm:inline">Mohieddin Tanna</span>
         </a>
         <nav className="hidden md:flex gap-6 text-sm text-text-secondary" aria-label="Primary">
           {navItems.map((n) => (
