@@ -21,28 +21,35 @@ const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null)
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!formRef.current) return
 
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error(
+        'EmailJS env vars are not set. Check VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY.'
+      )
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 5000)
+      return
+    }
+
     setStatus('sending')
 
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID as string,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string,
-        formRef.current,
-        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string }
-      )
-      .then(
-        () => {
-          setStatus('success')
-          formRef.current?.reset()
-        },
-        () => {
-          setStatus('error')
-        }
-      )
+    try {
+      await emailjs.sendForm(serviceId, templateId, formRef.current, { publicKey })
+      setStatus('success')
+      formRef.current.reset()
+      setTimeout(() => setStatus('idle'), 4000)
+    } catch (err) {
+      console.error('EmailJS error:', err)
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 5000)
+    }
   }
 
   const inputClass =
