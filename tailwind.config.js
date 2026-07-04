@@ -1,36 +1,51 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        'primary-dark': '#1a1b26',
-        'secondary-dark': '#24283b',
-        'accent-gold': '#f7ba2e',
-        'accent-teal': '#2dd4bf',
-        'success-green': '#10b981',
-        'text-primary': '#ffffff',
-        'text-secondary': '#9ca3af',
-        'border-subtle': '#374151'
+        // ── Canvas ──────────────────────────────────────────────────
+        canvas: '#FFFFFF', // primary page background
+        surface: '#F0F4F9', // card / section surface (Google blue-tinted gray)
+
+        // ── Typography ──────────────────────────────────────────────
+        ink: '#1F1F1F', // primary headings & body
+        slate: '#5F6368', // muted / secondary text
+
+        // ── Google Blue system ──────────────────────────────────────
+        'google-blue': '#1A73E8', // links, active states, focus rings
+        'active-tint': '#E8F0FE', // pill bg for active nav
+
+        // ── Utility ─────────────────────────────────────────────────
+        success: '#10b981',
+        error: '#ef4444',
       },
+
       fontFamily: {
+        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['SF Mono', 'Fira Code', 'Consolas', 'monospace'],
-        sans: ['Inter', 'SF Pro Display', 'system-ui', 'sans-serif']
       },
+
+      letterSpacing: {
+        tight: '-0.02em',
+        snug: '-0.01em',
+      },
+
+      lineHeight: {
+        reading: '1.75',
+      },
+
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out',
         'slide-down': 'slideDown 0.3s ease-out',
-        typing: 'typing 3.5s steps(40, end)',
-        'glow-pulse': 'glowPulse 2s ease-in-out infinite alternate'
       },
-      boxShadow: {
-        'gold-glow': '0 0 20px rgba(247, 186, 46, 0.3)',
-        'teal-glow': '0 0 20px rgba(45, 212, 191, 0.3)',
-        'leadership-card': '0 10px 40px rgba(247, 186, 46, 0.1)'
-      }
-    }
-  },
-  plugins: []
-};
 
+      boxShadow: {
+        float: '0 2px 20px rgba(0, 0, 0, 0.08)',
+        'card-lift': '0 8px 30px rgba(0, 0, 0, 0.04)',
+      },
+    },
+  },
+  plugins: [],
+}

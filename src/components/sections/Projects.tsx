@@ -5,41 +5,77 @@ import AnimatedSection from '@components/ui/AnimatedSection'
 
 const Projects: React.FC = () => {
   return (
-    <div className="py-16">
+    <div className="py-24 bg-surface">
       <Container>
         <AnimatedSection>
-          <h2 className="text-3xl font-bold text-accent-gold">Some Things I've Built</h2>
-          <div className="mt-8 grid gap-8">
+          {/* Section label */}
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1.5 h-1.5 rounded-full bg-google-blue" />
+            <span className="font-mono text-xs tracking-[0.15em] uppercase text-slate">
+              Projects
+            </span>
+          </div>
+
+          <h2 className="font-display font-semibold text-ink text-4xl sm:text-5xl tracking-tight leading-tight">
+            Some Things I've Built
+          </h2>
+
+          <div className="mt-12 space-y-8">
             {projects.map((p, idx) => (
-              <div
-                key={p.title}
-                className={`grid md:grid-cols-2 gap-6 items-center ${idx % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''} transition-transform duration-300 hover:-translate-y-0.5`}
-              >
-                {p.image ? (
-                  <img
-                    src={p.image}
-                    alt={`${p.title} illustration`}
-                    className="aspect-video w-full rounded border border-border-subtle object-cover bg-secondary-dark/60 shadow-teal-glow"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="aspect-video rounded bg-secondary-dark/60 border border-border-subtle" />
-                )}
-                <div>
-                  <h3 className="text-2xl font-semibold text-accent-gold">{p.title}</h3>
-                  <p className="mt-2 text-text-secondary">{p.description}</p>
-                  <ul className="mt-3 flex flex-wrap gap-2 text-sm text-accent-teal">
-                    {p.tech.map((t) => (
-                      <li key={t} className="px-2 py-1 rounded border border-accent-teal/30">
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
-                  <ul className="mt-3 list-disc pl-5 text-text-secondary space-y-1">
-                    {p.highlights.map((h) => (
-                      <li key={h}>{h}</li>
-                    ))}
-                  </ul>
+              <div key={p.title} className="gemini-card">
+                <div
+                  className={`gemini-card-body bg-canvas p-6 sm:p-8 grid md:grid-cols-2 gap-8 items-center ${
+                    idx % 2 === 1 ? 'md:[&>*:first-child]:order-2' : ''
+                  }`}
+                >
+                  {/* Image */}
+                  <div className="aspect-video overflow-hidden rounded-2xl bg-surface">
+                    {p.image ? (
+                      <img
+                        src={p.image}
+                        alt={`${p.title} screenshot`}
+                        className="w-full h-full object-cover transition-fluid hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-surface" />
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-4">
+                    <p className="font-mono text-xs tracking-[0.15em] uppercase text-slate">
+                      Featured Project
+                    </p>
+
+                    <h3 className="font-display font-semibold text-2xl sm:text-3xl text-ink tracking-tight leading-tight">
+                      {p.title}
+                    </h3>
+
+                    <p className="text-slate leading-[1.8] text-base">{p.description}</p>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {p.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="font-mono text-sm px-3 py-1.5 rounded-full bg-surface text-ink/70 border border-slate/30"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Highlights */}
+                    <ul className="space-y-2.5 pt-1">
+                      {p.highlights.map((h) => (
+                        <li key={h} className="flex gap-3 text-base text-slate leading-[1.7]">
+                          <span className="text-google-blue shrink-0 text-xs mt-[5px]">▹</span>
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             ))}

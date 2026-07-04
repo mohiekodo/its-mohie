@@ -4,40 +4,39 @@ export const experiences: ExperienceItem[] = [
   {
     company: 'SEEK',
     role: 'Lead Engineer',
-    duration: 'September 2024 - Present',
+    duration: 'September 2024 – Present',
     highlights: [
-      'Led development teams across Candidates and Talent Consultants domains, driving innovation through cross-functional collaboration',
-      'Architected robust backend infrastructure using Node.js, Express.js, TypeScript, and AWS to deliver scalable, enterprise-grade solutions',
-      'Established engineering excellence by implementing technical standards, comprehensive code review processes, and quality assurance frameworks',
-      'Partnered with product leadership to develop strategic technical roadmaps and implement effective sprint planning methodologies',
-      'Delivered high-impact solutions that improved system performance and user experience across talent management platforms',
-      'Mentored team members on modern development practices and cloud-based architecture patterns',
+      'Own technical direction and end-to-end delivery for the Candidates and Talent Consultants domains, leading distributed engineering teams from planning to production',
+      'Designed and scaled backend services on Node.js, TypeScript, Express.js, AWS, and OpenSearch powering enterprise recruitment workflows across the platform',
+      'Raised the engineering bar across the team — authored coding standards, introduced code-review SLAs, and built QA frameworks now adopted org-wide',
+      'Drive quarterly roadmapping and sprint planning in close partnership with product leadership, ensuring technical feasibility and delivery predictability',
+      'Improved API reliability and latency across talent management platforms through targeted architectural changes and observability improvements',
+      'Mentor engineers at all levels through structured 1:1s, technical pairing, and individual growth plans',
     ],
   },
   {
     company: 'PropertyGuru Group',
     role: 'Tech Team Lead',
-    duration: 'December 2022 - September 2024',
+    duration: 'December 2022 – September 2024',
     highlights: [
-      "Led distributed development teams across multiple locations to deliver innovative core platform capabilities for PropertyGuru's business solutions",
-      'Participated in system architecture decisions and technical design reviews to modernize legacy systems while implementing new features',
-      'Collaborated with product managers on roadmap development and sprint planning to align technical execution with product vision',
-      'Mentored development teams and facilitated knowledge transfer across different geographical locations',
-      'Contributed to architectural evolution by evaluating and implementing modern development practices and technologies',
+      "Led distributed engineering teams across multiple offices to deliver new capabilities for PropertyGuru's core data software platform",
+      'Drove architectural modernisation — decomposing legacy monoliths and introducing scalable service boundaries using NestJS, React.js, and AWS',
+      'Partnered with product managers on roadmap sequencing, translating complex technical constraints into actionable delivery milestones',
+      'Built team cohesion across geographically distributed teams through structured knowledge transfer, shared documentation, and remote pairing practices',
+      'Owned technical design reviews for major platform changes, balancing delivery velocity with long-term maintainability',
     ],
   },
   {
     company: 'Supahands',
     role: 'Software Engineer → Tech Lead',
-    duration: 'November 2017 - November 2022',
+    duration: 'November 2017 – November 2022',
     highlights: [
-      'Led cross-functional development teams across multiple locations to deliver innovative platform solutions, including SelfServe data cleaning features',
-      'Mentored junior developers and fostered knowledge sharing initiatives across engineering teams',
-      'Participated in system architecture decisions and conducted technical design reviews for enterprise-level applications',
-      'Optimized database performance and query efficiency for critical business systems, reducing response times and improving user experience',
-      'Designed and implemented RESTful APIs and microservices architecture to support scalable business operations',
-      'Contributed to full-stack development using React.js and Next.js for modern web applications',
-      'Implemented automated testing frameworks and continuous integration workflows to enhance development velocity',
+      'Grew from Software Engineer to Tech Lead over 5 years, ultimately owning full delivery for the Annotation Platform and SelfServe data-cleaning product',
+      'Led cross-functional teams to ship SelfServe — a self-service data annotation tool — from conception through to enterprise client adoption',
+      'Architected a microservices system using React.js, Next.js, and RESTful APIs on AWS, enabling horizontal scalability as the client base expanded',
+      'Optimised critical database queries and introduced caching strategies that significantly reduced data pipeline processing times',
+      'Established automated testing and CI/CD workflows with GitHub Actions, cutting regression incidents and improving deployment confidence',
+      'Mentored junior engineers through code reviews, structured pairing sessions, and individual development planning',
     ],
   },
 ]
@@ -45,24 +44,39 @@ export const experiences: ExperienceItem[] = [
 export const projects: ProjectItem[] = [
   {
     title: 'Enterprise Platforms For TC (SEEK)',
-    description: 'Scalable backend infrastructure powering recruitment solutions',
+    description:
+      'Scalable backend infrastructure powering end-to-end recruitment workflows for Talent Consultants and Candidates.',
     tech: ['Node.js', 'Express.js', 'TypeScript', 'AWS', 'OpenSearch', 'PostgreSQL'],
-    highlights: ['Cross-functional team leadership', 'Enterprise-grade solutions'],
-    image: '/assets/projects/seek-architecture.svg',
+    highlights: [
+      'Unified backend APIs serving both candidate-facing and consultant-facing applications from a single, well-structured service layer',
+      'Standardised OpenSearch indexing strategy across recruitment data pipelines, improving search consistency and relevance',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80',
   },
   {
     title: 'PropertyGuru Data Software Solutions Platform',
-    description: 'Core platform capabilities for business solutions',
-    tech: ['Full-stack development', 'System design', 'NestJS', 'React.js', 'AWS'],
-    highlights: ['Distributed team coordination', 'Architectural evolution'],
-    image: '/assets/projects/propertyguru-platform.svg',
+    description:
+      "Core platform capabilities modernising the property data infrastructure powering PropertyGuru's business solutions.",
+    tech: ['NestJS', 'React.js', 'TypeScript', 'PostgreSQL', 'AWS'],
+    highlights: [
+      'Drove modernisation from a legacy monolith to a service-oriented architecture, reducing deployment coupling and enabling faster iteration',
+      'Enabled parallel team development across 3 geographic locations through well-defined service contracts and shared engineering practices',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
   },
   {
-    title: 'Supahands Annotation Platform & SelfServe Features',
-    description: 'Data cleaning platform with microservices architecture',
-    tech: ['React.js', 'Next.js', 'REST', 'Microservices', 'AWS'],
-    highlights: ['Planning', 'Development', 'Scaling'],
-    image: '/assets/projects/supahands-selfserve.svg',
+    title: 'Supahands Annotation Platform & SelfServe',
+    description:
+      'Self-service data annotation and cleaning platform built on a microservices architecture for enterprise clients.',
+    tech: ['React.js', 'Next.js', 'Node.js', 'REST', 'Microservices', 'AWS'],
+    highlights: [
+      'Scaled SelfServe from an internal MVP to a production platform handling multi-client data annotation workflows',
+      'Reduced manual data processing overhead through pipeline automation and a microservices design that isolated processing concerns',
+    ],
+    image:
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
   },
 ]
 
@@ -70,8 +84,9 @@ export const skills = {
   languages: ['JavaScript', 'TypeScript', 'Go', 'Python', 'Ruby'],
   backend: ['Node.js', 'Express.js', 'NestJS', 'Ruby on Rails'],
   frontend: ['React.js', 'Next.js'],
-  databases: ['SQL', 'NoSQL'],
-  cloud: ['AWS'],
-  devops: ['BuildKite', 'GitHub Actions'],
-  leadership: ['People Management', 'SDLC Management'],
+  databases: ['PostgreSQL', 'MySQL', 'MongoDB', 'OpenSearch', 'Redis'],
+  cloud: ['AWS (Lambda, ECS, RDS, S3, CloudWatch)'],
+  devops: ['BuildKite', 'GitHub Actions', 'Docker'],
+  leadership: ['People Management', 'SDLC Management', 'Technical Roadmapping'],
+  AI: ['Prompt Engineering', 'Generative AI', 'LLM Fine-tuning', 'LLM Evaluation'],
 }

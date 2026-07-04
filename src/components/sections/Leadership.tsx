@@ -3,32 +3,57 @@ import Container from '@components/ui/Container'
 import AnimatedSection from '@components/ui/AnimatedSection'
 import { Award, Users, GitBranch, GraduationCap, Boxes } from 'lucide-react'
 
+const cards = [
+  { title: '8+ Years', desc: 'Engineering leadership across 3 companies & domains', icon: Award },
+  {
+    title: '3 Distributed Teams',
+    desc: 'Led across KL, Singapore & remote locations',
+    icon: Users,
+  },
+  { title: 'Cross-functional', desc: 'Product, engineering & design alignment', icon: Boxes },
+  {
+    title: '10+ Mentored',
+    desc: 'Individual growth plans & team development',
+    icon: GraduationCap,
+  },
+  {
+    title: 'Architecture',
+    desc: 'Legacy modernisation & service-oriented design',
+    icon: GitBranch,
+  },
+]
+
 const Leadership: React.FC = () => {
-  const cards = [
-    { title: '8+ Years', desc: 'Technical leadership', icon: Award },
-    { title: 'Multiple Teams', desc: 'Distributed leadership', icon: Users },
-    { title: 'Cross‑functional', desc: 'Collaboration expertise', icon: Boxes },
-    { title: 'Mentorship', desc: 'Growing engineers', icon: GraduationCap },
-    { title: 'Architecture', desc: 'Design & evolution', icon: GitBranch },
-  ]
   return (
-    <div className="py-16">
+    <div className="py-24 bg-canvas">
       <Container>
         <AnimatedSection>
-          <h2 className="text-3xl font-bold text-accent-gold">Leadership Impact</h2>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Section label */}
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1.5 h-1.5 rounded-full bg-google-blue" />
+            <span className="font-mono text-xs tracking-[0.15em] uppercase text-slate">
+              Leadership
+            </span>
+          </div>
+
+          <h2 className="font-display font-semibold text-ink text-4xl sm:text-5xl tracking-tight leading-tight">
+            Leadership Impact
+          </h2>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {cards.map(({ title, desc, icon: Icon }) => (
-              <div
-                key={title}
-                className="group rounded-xl border border-accent-gold/15 bg-gradient-to-br from-secondary-dark/70 to-primary-dark/70 p-5 shadow-leadership-card hover:border-accent-gold/30 transition transform hover:-translate-y-0.5 hover:shadow-gold-glow"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-gold/10 text-accent-gold shadow-gold-glow">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="text-xl font-semibold text-text-primary">{title}</div>
+              <div key={title} className="gemini-card">
+                <div className="gemini-card-body bg-surface p-7 flex flex-col gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-active-tint flex items-center justify-center text-google-blue">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="font-display font-semibold text-xl text-ink tracking-tight">
+                      {title}
+                    </div>
+                    <div className="mt-1.5 text-base text-slate leading-[1.65]">{desc}</div>
+                  </div>
                 </div>
-                <div className="mt-2 text-sm text-text-secondary">{desc}</div>
               </div>
             ))}
           </div>

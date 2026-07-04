@@ -3,8 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
@@ -17,17 +19,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Offset for fixed header when using #hash links */
 section[id] {
-  scroll-margin-top: 4.5rem; /* header height (h-14 = 3.5rem) + spacing */
+  scroll-margin-top: 4.5rem;
 }
 
 body {
-  background-color: #1a1b26;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #1f1f1f;
 }
 
-/* Keyframes referenced by Tailwind animation shortcuts */
+/* ─── Keyframes ─────────────────────────────────────────────────────────── */
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -50,20 +52,109 @@ body {
   }
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+/* ─── Gemini Aurora Gradient ────────────────────────────────────────────── */
+
+/* Reusable gradient value — referenced by all aurora utilities */
+:root {
+  --aurora: linear-gradient(45deg, #1a73e8 0%, #8ab4f8 30%, #a062ff 70%, #ff8bcb 100%);
+  --aurora-hover: linear-gradient(45deg, #1557b0 0%, #7a9fd0 30%, #8040c0 70%, #d870a8 100%);
 }
 
-@keyframes glowPulse {
-  from {
-    box-shadow: 0 0 0 rgba(247, 186, 46, 0);
-  }
-  to {
-    box-shadow: 0 0 20px rgba(247, 186, 46, 0.4);
-  }
+/* Gradient applied to text */
+.aurora-text {
+  background: var(--aurora);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient applied to backgrounds (buttons, tags) */
+.aurora-bg {
+  background: var(--aurora);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.aurora-bg:hover {
+  background: var(--aurora-hover);
+}
+
+/* ─── Motion ────────────────────────────────────────────────────────────── */
+
+/* Fluid cubic-bezier matching Google AI's responsiveness */
+.transition-fluid {
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Tactile button press — 2% shrink on click */
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* ─── Gemini Card ───────────────────────────────────────────────────────── */
+/*
+ * Two-layer card component:
+ *   .gemini-card      — outer wrapper; ::before fades in the aurora gradient border
+ *   .gemini-card-body — inner content layer; sits above ::before via z-index
+ *
+ * Usage:
+ *   <div class="gemini-card">
+ *     <div class="gemini-card-body bg-surface p-6">…</div>
+ *   </div>
+ */
+
+.gemini-card {
+  position: relative;
+  padding: 1px; /* exposes the 1px border gap */
+  border-radius: 24px;
+  transition: box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Aurora gradient border — fades in on hover */
+.gemini-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: var(--aurora);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.gemini-card:hover::before {
+  opacity: 1;
+}
+
+.gemini-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* Inner content layer — stacks above ::before */
+.gemini-card-body {
+  position: relative;
+  z-index: 1;
+  border-radius: 23px; /* 1px less than outer to preserve the gap */
+  height: 100%;
+}
+
+/* ─── Nav underline hover animation ────────────────────────────────────── */
+
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  border-radius: 9999px;
+  background: #1a73e8;
+  opacity: 0.7;
+  transition:
+    left 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    right 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav-link-hover:hover::after {
+  left: 0;
+  right: 0;
 }

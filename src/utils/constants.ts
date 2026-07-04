@@ -4,4 +4,6 @@ export const SITE = {
   email: 'mohieddintana93@gmail.com',
   location: 'Kuala Lumpur, Malaysia',
   linkedin: 'https://www.linkedin.com/in/mohie93',
+  // TODO: confirm your GitHub handle
+  github: 'https://github.com/its-mohie',
 }

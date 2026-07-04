@@ -7,6 +7,7 @@ import Experience from '@components/sections/Experience'
 import Projects from '@components/sections/Projects'
 import Leadership from '@components/sections/Leadership'
 import Contact from '@components/sections/Contact'
+import { SITE } from '@utils/constants'
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           name="description"
           content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams."
         />
-        <meta name="theme-color" content="#1a1b26" />
+        <meta name="theme-color" content="#FFFFFF" />
         <link rel="canonical" href="https://its-mohie.com/" />
         <link rel="icon" type="image/svg+xml" href="/assets/brand/mt-icon.svg" />
 
@@ -48,7 +49,7 @@ function App() {
             name: 'Mohieddin Tanna',
             jobTitle: 'Lead Engineer',
             url: 'https://its-mohie.com/',
-            sameAs: ['https://www.linkedin.com/in/mohie93'],
+            sameAs: [SITE.linkedin, SITE.github],
             address: {
               '@type': 'PostalAddress',
               addressLocality: 'Kuala Lumpur',
@@ -58,26 +59,24 @@ function App() {
         </script>
       </Helmet>
       <Layout>
-        <main>
-          <section id="hero">
-            <Hero />
-          </section>
-          <section id="about">
-            <About />
-          </section>
-          <section id="experience">
-            <Experience />
-          </section>
-          <section id="projects">
-            <Projects />
-          </section>
-          <section id="leadership">
-            <Leadership />
-          </section>
-          <section id="contact">
-            <Contact />
-          </section>
-        </main>
+        <section id="hero">
+          <Hero />
+        </section>
+        <section id="about">
+          <About />
+        </section>
+        <section id="experience">
+          <Experience />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        <section id="leadership">
+          <Leadership />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
       </Layout>
     </>
   )

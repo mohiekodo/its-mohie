@@ -1,6 +1,6 @@
 import React from 'react'
-import { motion, useInView } from 'framer-motion'
-import { sectionTransition, fadeInUp } from '@utils/animations'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { sectionTransition, fadeInUp, fadeIn } from '@utils/animations'
 
 const AnimatedSection: React.FC<React.PropsWithChildren<{ className?: string }>> = ({
   children,
@@ -8,13 +8,14 @@ const AnimatedSection: React.FC<React.PropsWithChildren<{ className?: string }>>
 }) => {
   const ref = React.useRef<HTMLDivElement | null>(null)
   const inView = useInView(ref, { once: true, margin: '-10% 0px' })
+  const shouldReduceMotion = useReducedMotion()
 
   return (
     <motion.div
       ref={ref}
       initial="initial"
       animate={inView ? 'animate' : 'initial'}
-      variants={fadeInUp}
+      variants={shouldReduceMotion ? fadeIn : fadeInUp}
       transition={sectionTransition}
       className={className}
     >

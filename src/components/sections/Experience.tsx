@@ -6,40 +6,71 @@ import { Tab } from '@headlessui/react'
 
 const Experience: React.FC = () => {
   return (
-    <div className="py-16">
+    <div className="py-24 bg-canvas">
       <Container>
         <AnimatedSection>
-          <h2 className="text-3xl font-bold text-accent-gold">Where I've Worked</h2>
-          <div className="mt-6">
+          {/* Section label */}
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1.5 h-1.5 rounded-full bg-google-blue" />
+            <span className="font-mono text-xs tracking-[0.15em] uppercase text-slate">
+              Experience
+            </span>
+          </div>
+
+          <h2 className="font-display font-semibold text-ink text-4xl sm:text-5xl tracking-tight leading-tight">
+            Where I've Worked
+          </h2>
+
+          <div className="mt-10">
             <Tab.Group>
-              <div className="flex flex-col md:flex-row gap-4">
-                <Tab.List className="flex md:flex-col gap-2 md:w-56">
+              <div className="flex flex-col md:flex-row gap-6">
+                {/* Tab list */}
+                <Tab.List className="flex md:flex-col gap-0 md:w-48 shrink-0 border-b md:border-b-0 md:border-r border-slate/10">
                   {experiences.map((exp) => (
                     <Tab
                       key={exp.company}
                       className={({ selected }) =>
-                        `text-left rounded px-3 py-2 border border-border-subtle/60 hover:border-accent-gold/40 focus:outline-none focus:ring-2 focus:ring-accent-gold/60 ${selected ? 'bg-secondary-dark/70 text-accent-gold' : 'text-text-secondary'}`
+                        `text-left px-4 py-4 text-base font-medium focus:outline-none transition-fluid border-b-2 md:border-b-0 md:border-r-2 ${
+                          selected
+                            ? 'border-google-blue text-google-blue bg-active-tint/50'
+                            : 'border-transparent text-slate hover:text-ink hover:bg-surface/70'
+                        }`
                       }
                     >
                       <div className="font-semibold">{exp.company}</div>
-                      <div className="text-xs text-text-secondary">{exp.duration}</div>
+                      <div className="text-sm opacity-60 mt-0.5">{exp.duration}</div>
                     </Tab>
                   ))}
                 </Tab.List>
-                <Tab.Panels className="flex-1">
+
+                {/* Panels */}
+                <Tab.Panels className="flex-1 min-w-0">
                   {experiences.map((exp) => (
-                    <Tab.Panel
-                      key={exp.company}
-                      className="rounded border border-border-subtle p-4 bg-secondary-dark/50"
-                    >
-                      <div className="text-xl font-semibold text-accent-gold">
-                        {exp.role} @ {exp.company}
+                    <Tab.Panel key={exp.company}>
+                      <div className="gemini-card">
+                        <div className="gemini-card-body bg-surface p-6 sm:p-8">
+                          <div className="font-display font-semibold text-2xl text-ink tracking-tight">
+                            {exp.role} <span className="aurora-text">@ {exp.company}</span>
+                          </div>
+                          <div className="mt-1.5 font-mono text-sm tracking-[0.1em] uppercase text-slate">
+                            {exp.duration}
+                          </div>
+
+                          <ul className="mt-6 space-y-3.5">
+                            {exp.highlights.map((h) => (
+                              <li
+                                key={h}
+                                className="flex gap-3 text-base text-slate leading-[1.75]"
+                              >
+                                <span className="text-google-blue mt-[5px] shrink-0 text-xs">
+                                  ▹
+                                </span>
+                                {h}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                      <ul className="mt-3 list-disc pl-5 text-text-secondary space-y-1">
-                        {exp.highlights.map((h) => (
-                          <li key={h}>{h}</li>
-                        ))}
-                      </ul>
                     </Tab.Panel>
                   ))}
                 </Tab.Panels>
