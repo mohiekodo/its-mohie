@@ -9,6 +9,7 @@ const skillCategories: { key: keyof typeof skills; label: string }[] = [
   { key: 'frontend', label: 'Frontend' },
   { key: 'databases', label: 'Databases' },
   { key: 'cloud', label: 'Cloud & DevOps' },
+  { key: 'AI', label: 'AI' },
   { key: 'leadership', label: 'Leadership' },
 ]
 

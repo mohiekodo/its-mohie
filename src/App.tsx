@@ -6,6 +6,7 @@ import About from '@components/sections/About'
 import Experience from '@components/sections/Experience'
 import Projects from '@components/sections/Projects'
 import Leadership from '@components/sections/Leadership'
+import Testimonials from '@components/sections/Testimonials'
 import Contact from '@components/sections/Contact'
 import { SITE } from '@utils/constants'
 
@@ -73,6 +74,9 @@ function App() {
         </section>
         <section id="leadership">
           <Leadership />
+        </section>
+        <section id="testimonials">
+          <Testimonials />
         </section>
         <section id="contact">
           <Contact />

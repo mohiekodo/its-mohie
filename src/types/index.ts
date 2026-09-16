@@ -13,3 +13,9 @@ export type ProjectItem = {
   image?: string
 }
 
+export type TestimonialItem = {
+  quote: string
+  name: string
+  role: string
+  company: string
+}

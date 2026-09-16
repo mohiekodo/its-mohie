@@ -1,4 +1,4 @@
-import { ExperienceItem, ProjectItem } from '@app-types/index'
+import { ExperienceItem, ProjectItem, TestimonialItem } from '@app-types/index'
 
 export const experiences: ExperienceItem[] = [
   {
@@ -51,8 +51,7 @@ export const projects: ProjectItem[] = [
       'Unified backend APIs serving both candidate-facing and consultant-facing applications from a single, well-structured service layer',
       'Standardised OpenSearch indexing strategy across recruitment data pipelines, improving search consistency and relevance',
     ],
-    image:
-      'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/projects/seek-architecture.svg',
   },
   {
     title: 'PropertyGuru Data Software Solutions Platform',
@@ -63,8 +62,7 @@ export const projects: ProjectItem[] = [
       'Drove modernisation from a legacy monolith to a service-oriented architecture, reducing deployment coupling and enabling faster iteration',
       'Enabled parallel team development across 3 geographic locations through well-defined service contracts and shared engineering practices',
     ],
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/projects/propertyguru-platform.svg',
   },
   {
     title: 'Supahands Annotation Platform & SelfServe',
@@ -75,8 +73,52 @@ export const projects: ProjectItem[] = [
       'Scaled SelfServe from an internal MVP to a production platform handling multi-client data annotation workflows',
       'Reduced manual data processing overhead through pipeline automation and a microservices design that isolated processing concerns',
     ],
-    image:
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80',
+    image: '/assets/projects/supahands-selfserve.svg',
+  },
+]
+
+export const testimonials: TestimonialItem[] = [
+  {
+    quote:
+      "Learning from Mohie at Supahands was priceless. He wasn't just my boss; he was my guide into the world of professional software engineering. Mohie taught me the technical stuff like Ruby, JavaScript, and Python, but more importantly, he made me feel confident about solving problems.",
+    name: 'Ayoob Mohammed',
+    role: 'Senior Software Engineer',
+    company: 'Miswag',
+  },
+  {
+    quote:
+      'Mohie has consistently demonstrated strong leadership skills and a deep understanding of software development best practices. He is a good leader who strives to support, encourage junior developers and is always willing to listen to and address the concerns of team members.',
+    name: 'Wafa Jellali',
+    role: 'Senior Frontend Developer',
+    company: 'Supahands',
+  },
+  {
+    quote:
+      "One of Mohieddin's most remarkable qualities is his ability to think critically and offer insightful perspectives on complex issues. His opinions are well-informed and grounded in his extensive knowledge and experience. He is not afraid to voice his thoughts and provide constructive feedback, which has often led to significant improvements in our projects.",
+    name: 'Tzu Chjeh (TC) Wu',
+    role: 'Responsible AI Automation',
+    company: 'PropertyGuru',
+  },
+  {
+    quote:
+      "I've had the opportunity to work alongside Mohie on a fast-paced and technically challenging team. He consistently put effort into aligning team delivery with broader expectations and helped ensure that workloads remained sustainable. His drive to move projects forward and meet deadlines contributed to the team's ability to deliver reliably.",
+    name: 'Chin Tiong Tan',
+    role: 'Senior Web Engineer',
+    company: 'MoneyLion',
+  },
+  {
+    quote:
+      'Mohie is a great team player and patient mentor, who constantly works on sharpening his technical skills. It is always a pleasure working with him because he is reliable and I can trust him to deliver quality work on time. He is one of my few go-to people to bounce off ideas because he has the technical experience and big picture, architectural knowledge to ask the right questions.',
+    name: 'Grace Tee',
+    role: 'Global Payment Data Engineer',
+    company: 'ByteDance',
+  },
+  {
+    quote:
+      'Mohie is very dedicated engineer who try to implement neat code with high quality. He is fast learner and eager to learn more. He receives feedback very well and works on them to fix them. The same goes for code reviews, he asks why to really understand it and he will fix them after that.',
+    name: 'Mohsen Saghafi',
+    role: 'Senior Software Engineer',
+    company: 'Booking.com',
   },
 ]
 

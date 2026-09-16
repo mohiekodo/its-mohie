@@ -9,10 +9,9 @@ const navItems = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'leadership', label: 'Leadership' },
+  { id: 'testimonials', label: 'Testimonials' },
   { id: 'contact', label: 'Contact' },
 ]
-
-const aurora = 'linear-gradient(90deg, #1A73E8 0%, #8AB4F8 40%, #A062FF 70%, #FF8bcb 100%)'
 
 const Header: React.FC = () => {
   const active = useActiveSection()
@@ -66,7 +65,7 @@ const Header: React.FC = () => {
                 <motion.span
                   layoutId="nav-indicator"
                   className="absolute left-0 right-0 -bottom-[2px] h-[2px] rounded-full"
-                  style={{ background: aurora }}
+                  style={{ background: 'var(--aurora)' }}
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}

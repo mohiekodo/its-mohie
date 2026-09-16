@@ -13,7 +13,7 @@ const contactDetails: Array<{
 }> = [
   { label: 'Email', icon: Mail, value: SITE.email, href: `mailto:${SITE.email}` },
   { label: 'LinkedIn', icon: Linkedin, value: 'linkedin.com/in/mohie93', href: SITE.linkedin },
-  { label: 'GitHub', icon: Github, value: 'github.com/its-mohie', href: SITE.github },
+  { label: 'GitHub', icon: Github, value: 'github.com/mohiekodo', href: SITE.github },
   { label: 'Location', icon: MapPin, value: SITE.location, href: undefined },
 ]
 
