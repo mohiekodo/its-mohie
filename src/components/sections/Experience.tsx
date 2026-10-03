@@ -2,7 +2,7 @@ import React from 'react'
 import Container from '@components/ui/Container'
 import { experiences } from '@data/content'
 import AnimatedSection from '@components/ui/AnimatedSection'
-import { Tab } from '@headlessui/react'
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 
 const Experience: React.FC = () => {
   return (
@@ -22,15 +22,15 @@ const Experience: React.FC = () => {
           </h2>
 
           <div className="mt-10">
-            <Tab.Group>
+            <TabGroup>
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Tab list */}
-                <Tab.List className="flex md:flex-col gap-0 md:w-48 shrink-0 border-b md:border-b-0 md:border-r border-slate/10">
+                <TabList className="flex md:flex-col gap-0 md:w-48 shrink-0 border-b md:border-b-0 md:border-r border-slate/10">
                   {experiences.map((exp) => (
                     <Tab
                       key={exp.company}
                       className={({ selected }) =>
-                        `text-left px-4 py-4 text-base font-medium focus:outline-none transition-fluid border-b-2 md:border-b-0 md:border-r-2 ${
+                        `text-left px-4 py-4 text-base font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-google-blue transition-fluid border-b-2 md:border-b-0 md:border-r-2 ${
                           selected
                             ? 'border-google-blue text-google-blue bg-active-tint/50'
                             : 'border-transparent text-slate hover:text-ink hover:bg-surface/70'
@@ -41,12 +41,12 @@ const Experience: React.FC = () => {
                       <div className="text-sm opacity-60 mt-0.5">{exp.duration}</div>
                     </Tab>
                   ))}
-                </Tab.List>
+                </TabList>
 
                 {/* Panels */}
-                <Tab.Panels className="flex-1 min-w-0">
+                <TabPanels className="flex-1 min-w-0">
                   {experiences.map((exp) => (
-                    <Tab.Panel key={exp.company}>
+                    <TabPanel key={exp.company}>
                       <div className="gemini-card">
                         <div className="gemini-card-body bg-surface p-6 sm:p-8">
                           <div className="font-display font-semibold text-2xl text-ink tracking-tight">
@@ -71,11 +71,11 @@ const Experience: React.FC = () => {
                           </ul>
                         </div>
                       </div>
-                    </Tab.Panel>
+                    </TabPanel>
                   ))}
-                </Tab.Panels>
+                </TabPanels>
               </div>
-            </Tab.Group>
+            </TabGroup>
           </div>
         </AnimatedSection>
       </Container>

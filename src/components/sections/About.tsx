@@ -2,6 +2,7 @@ import React from 'react'
 import Container from '@components/ui/Container'
 import { skills } from '@data/content'
 import AnimatedSection from '@components/ui/AnimatedSection'
+import { getYearsOfExperience } from '@utils/experience'
 
 const skillCategories: { key: keyof typeof skills; label: string }[] = [
   { key: 'languages', label: 'Languages' },
@@ -34,12 +35,12 @@ const About: React.FC = () => {
           </h2>
 
           <p className="mt-6 text-slate max-w-3xl leading-[1.8] text-base sm:text-lg">
-            I'm a software engineer and technical leader with over 8 years of experience building
-            distributed systems and high-performing teams. I've led engineering across recruitment
-            tech at SEEK, real estate at PropertyGuru, and data platforms at Supahands — growing
-            from individual contributor to leading cross-functional teams across multiple
-            geographies. Originally from Syria and now based in Kuala Lumpur, I care as much about
-            the people I work with as the systems we build together. I'm passionate about
+            I'm a software engineer and technical leader with over {getYearsOfExperience()} years of
+            experience building distributed systems and high-performing teams. I've led engineering
+            across recruitment tech at SEEK, real estate at PropertyGuru, and data platforms at
+            Supahands — growing from individual contributor to leading cross-functional teams across
+            multiple geographies. Originally from Syria and now based in Kuala Lumpur, I care as
+            much about the people I work with as the systems we build together. I'm passionate about
             modernising legacy architecture, mentoring engineers at every stage of their growth, and
             aligning technical strategy with real business outcomes.
           </p>

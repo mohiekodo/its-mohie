@@ -1,88 +1,76 @@
-import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import React, { Suspense, lazy, useEffect } from 'react'
 import Layout from '@components/layout/Layout'
 import Hero from '@components/sections/Hero'
-import About from '@components/sections/About'
-import Experience from '@components/sections/Experience'
-import Projects from '@components/sections/Projects'
-import Leadership from '@components/sections/Leadership'
-import Testimonials from '@components/sections/Testimonials'
-import Contact from '@components/sections/Contact'
-import { SITE } from '@utils/constants'
+
+// Below-the-fold sections are split into separate chunks so the first paint stays light.
+const loaders = {
+  About: () => import('@components/sections/About'),
+  Experience: () => import('@components/sections/Experience'),
+  Projects: () => import('@components/sections/Projects'),
+  Leadership: () => import('@components/sections/Leadership'),
+  Testimonials: () => import('@components/sections/Testimonials'),
+  Contact: () => import('@components/sections/Contact'),
+}
+
+const About = lazy(loaders.About)
+const Experience = lazy(loaders.Experience)
+const Projects = lazy(loaders.Projects)
+const Leadership = lazy(loaders.Leadership)
+const Testimonials = lazy(loaders.Testimonials)
+const Contact = lazy(loaders.Contact)
+
+// Reserves space while a chunk loads so the layout (and scroll-spy) doesn't jump.
+const SectionFallback: React.FC = () => <div aria-hidden="true" className="min-h-[60vh]" />
 
 function App() {
+  // Warm the chunk cache once the browser is idle so scrolling/hash links never wait on network.
+  useEffect(() => {
+    const prefetch = () => Object.values(loaders).forEach((load) => void load())
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(prefetch, { timeout: 3000 })
+      return () => window.cancelIdleCallback(id)
+    }
+    const id = window.setTimeout(prefetch, 1500)
+    return () => window.clearTimeout(id)
+  }, [])
+
+  // Section wrappers stay eager so IDs exist immediately for navigation and scroll-spy.
   return (
-    <>
-      <Helmet>
-        <title>Mohieddin Tanna — Strategic Tech Leader</title>
-        <meta
-          name="description"
-          content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams."
-        />
-        <meta name="theme-color" content="#FFFFFF" />
-        <link rel="canonical" href="https://its-mohie.com/" />
-        <link rel="icon" type="image/svg+xml" href="/assets/brand/mt-icon.svg" />
-
-        {/* Open Graph */}
-        <meta property="og:title" content="Mohieddin Tanna — Strategic Tech Leader" />
-        <meta
-          property="og:description"
-          content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://its-mohie.com/" />
-        <meta property="og:image" content="https://its-mohie.com/og-image.jpg" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Mohieddin Tanna — Strategic Tech Leader" />
-        <meta
-          name="twitter:description"
-          content="Portfolio of Mohieddin Tanna: Strategic tech leader specializing in scalable solutions and high-performing teams."
-        />
-        <meta name="twitter:image" content="https://its-mohie.com/og-image.jpg" />
-
-        {/* JSON-LD Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Person',
-            name: 'Mohieddin Tanna',
-            jobTitle: 'Lead Engineer',
-            url: 'https://its-mohie.com/',
-            sameAs: [SITE.linkedin, SITE.github],
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Kuala Lumpur',
-              addressCountry: 'Malaysia',
-            },
-          })}
-        </script>
-      </Helmet>
-      <Layout>
-        <section id="hero">
-          <Hero />
-        </section>
-        <section id="about">
+    <Layout>
+      <section id="hero">
+        <Hero />
+      </section>
+      <section id="about">
+        <Suspense fallback={<SectionFallback />}>
           <About />
-        </section>
-        <section id="experience">
+        </Suspense>
+      </section>
+      <section id="experience">
+        <Suspense fallback={<SectionFallback />}>
           <Experience />
-        </section>
-        <section id="projects">
+        </Suspense>
+      </section>
+      <section id="projects">
+        <Suspense fallback={<SectionFallback />}>
           <Projects />
-        </section>
-        <section id="leadership">
+        </Suspense>
+      </section>
+      <section id="leadership">
+        <Suspense fallback={<SectionFallback />}>
           <Leadership />
-        </section>
-        <section id="testimonials">
+        </Suspense>
+      </section>
+      <section id="testimonials">
+        <Suspense fallback={<SectionFallback />}>
           <Testimonials />
-        </section>
-        <section id="contact">
+        </Suspense>
+      </section>
+      <section id="contact">
+        <Suspense fallback={<SectionFallback />}>
           <Contact />
-        </section>
-      </Layout>
-    </>
+        </Suspense>
+      </section>
+    </Layout>
   )
 }
 

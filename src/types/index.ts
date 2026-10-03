@@ -13,6 +13,15 @@ export type ProjectItem = {
   image?: string
 }
 
+export type LeadershipIconKey = 'award' | 'users' | 'boxes' | 'graduation' | 'branch'
+
+export type LeadershipItem = {
+  /** Static title, or a function that derives it (e.g. from the current date). */
+  title: string | (() => string)
+  desc: string
+  icon: LeadershipIconKey
+}
+
 export type TestimonialItem = {
   quote: string
   name: string

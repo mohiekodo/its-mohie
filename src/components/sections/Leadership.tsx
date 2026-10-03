@@ -1,27 +1,17 @@
 import React from 'react'
+import { Award, Users, GitBranch, GraduationCap, Boxes, type LucideIcon } from 'lucide-react'
 import Container from '@components/ui/Container'
 import AnimatedSection from '@components/ui/AnimatedSection'
-import { Award, Users, GitBranch, GraduationCap, Boxes } from 'lucide-react'
+import { leadershipCards } from '@data/content'
+import type { LeadershipIconKey } from '@app-types/index'
 
-const cards = [
-  { title: '8+ Years', desc: 'Engineering leadership across 3 companies & domains', icon: Award },
-  {
-    title: '3 Distributed Teams',
-    desc: 'Led across KL, Singapore & remote locations',
-    icon: Users,
-  },
-  { title: 'Cross-functional', desc: 'Product, engineering & design alignment', icon: Boxes },
-  {
-    title: '10+ Mentored',
-    desc: 'Individual growth plans & team development',
-    icon: GraduationCap,
-  },
-  {
-    title: 'Architecture',
-    desc: 'Legacy modernisation & service-oriented design',
-    icon: GitBranch,
-  },
-]
+const icons: Record<LeadershipIconKey, LucideIcon> = {
+  award: Award,
+  users: Users,
+  boxes: Boxes,
+  graduation: GraduationCap,
+  branch: GitBranch,
+}
 
 const Leadership: React.FC = () => {
   return (
@@ -41,21 +31,25 @@ const Leadership: React.FC = () => {
           </h2>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {cards.map(({ title, desc, icon: Icon }) => (
-              <div key={title} className="gemini-card">
-                <div className="gemini-card-body bg-surface p-7 flex flex-col gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-active-tint flex items-center justify-center text-google-blue">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="font-display font-semibold text-xl text-ink tracking-tight">
-                      {title}
+            {leadershipCards.map(({ title, desc, icon }) => {
+              const Icon = icons[icon]
+              const resolvedTitle = typeof title === 'function' ? title() : title
+              return (
+                <div key={resolvedTitle} className="gemini-card">
+                  <div className="gemini-card-body bg-surface p-7 flex flex-col gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-active-tint flex items-center justify-center text-google-blue">
+                      <Icon className="w-5 h-5" aria-hidden="true" />
                     </div>
-                    <div className="mt-1.5 text-base text-slate leading-[1.65]">{desc}</div>
+                    <div>
+                      <div className="font-display font-semibold text-xl text-ink tracking-tight">
+                        {resolvedTitle}
+                      </div>
+                      <div className="mt-1.5 text-base text-slate leading-[1.65]">{desc}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </AnimatedSection>
       </Container>

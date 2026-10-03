@@ -23,6 +23,48 @@ section[id] {
   scroll-margin-top: 4.5rem;
 }
 
+/* ─── Accessibility ─────────────────────────────────────────────────────── */
+
+/* Visible keyboard focus for all interactive elements */
+:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 2px;
+}
+
+/* Skip link — hidden until focused */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 100;
+  transform: translateY(-120%);
+  padding: 0.6rem 1.1rem;
+  border-radius: 9999px;
+  background: #1a73e8;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0.75rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   background-color: #ffffff;
   color: #1f1f1f;
