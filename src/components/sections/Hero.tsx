@@ -119,11 +119,11 @@ const Hero: React.FC = () => {
             Get In Touch
           </a>
           <a
-            href="/resume.pdf"
+            href={SITE.resume}
             download
             className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold text-slate rounded-full hover:text-ink hover:bg-surface transition-fluid"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-4 h-4" aria-hidden="true" />
             Download Résumé
           </a>
         </motion.div>

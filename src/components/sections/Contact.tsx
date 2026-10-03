@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { Mail, Linkedin, Github, MapPin, type LucideIcon } from 'lucide-react'
 import Container from '@components/ui/Container'
@@ -17,13 +17,34 @@ const contactDetails: Array<{
   { label: 'Location', icon: MapPin, value: SITE.location, href: undefined },
 ]
 
+type FormStatus = 'idle' | 'sending' | 'success' | 'error'
+
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null)
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const resetTimerRef = useRef<number | undefined>(undefined)
+  const [status, setStatus] = useState<FormStatus>('idle')
+
+  // Clear any pending status-reset timer on unmount
+  useEffect(() => () => window.clearTimeout(resetTimerRef.current), [])
+
+  const finish = (next: Exclude<FormStatus, 'idle' | 'sending'>, resetAfterMs: number) => {
+    setStatus(next)
+    window.clearTimeout(resetTimerRef.current)
+    resetTimerRef.current = window.setTimeout(() => setStatus('idle'), resetAfterMs)
+  }
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!formRef.current) return
+    const form = formRef.current
+    if (!form) return
+
+    // Honeypot: real users never see or fill this field. Silently pretend success for bots.
+    const honeypot = new FormData(form).get('website')
+    if (typeof honeypot === 'string' && honeypot.trim() !== '') {
+      form.reset()
+      finish('success', 4000)
+      return
+    }
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
@@ -33,27 +54,25 @@ const Contact: React.FC = () => {
       console.error(
         'EmailJS env vars are not set. Check VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY.'
       )
-      setStatus('error')
-      setTimeout(() => setStatus('idle'), 5000)
+      finish('error', 8000)
       return
     }
 
     setStatus('sending')
 
     try {
-      await emailjs.sendForm(serviceId, templateId, formRef.current, { publicKey })
-      setStatus('success')
-      formRef.current.reset()
-      setTimeout(() => setStatus('idle'), 4000)
+      await emailjs.sendForm(serviceId, templateId, form, { publicKey })
+      form.reset()
+      finish('success', 5000)
     } catch (err) {
       console.error('EmailJS error:', err)
-      setStatus('error')
-      setTimeout(() => setStatus('idle'), 5000)
+      finish('error', 8000)
     }
   }
 
   const inputClass =
     'w-full bg-canvas rounded-xl border border-slate/35 px-4 py-3.5 text-base text-ink placeholder-slate/45 focus:border-google-blue focus:outline-none focus:ring-2 focus:ring-google-blue/15 transition-fluid'
+  const labelClass = 'block mb-1.5 font-mono text-xs tracking-[0.12em] uppercase text-slate'
 
   return (
     <div className="py-24 bg-surface">
@@ -109,26 +128,52 @@ const Contact: React.FC = () => {
 
             {/* Contact form — uses sendForm so EmailJS reads name attributes directly */}
             <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
-              <div>
+              {/* Honeypot — hidden from users and assistive tech, tempting to bots */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <label htmlFor="contact-website">Website</label>
                 <input
+                  id="contact-website"
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="contact-name" className={labelClass}>
+                  Name
+                </label>
+                <input
+                  id="contact-name"
                   type="text"
                   name="user_name"
                   required
+                  autoComplete="name"
                   placeholder="Your name"
                   className={inputClass}
                 />
               </div>
               <div>
+                <label htmlFor="contact-email" className={labelClass}>
+                  Email
+                </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="user_email"
                   required
+                  autoComplete="email"
                   placeholder="your@email.com"
                   className={inputClass}
                 />
               </div>
               <div>
+                <label htmlFor="contact-message" className={labelClass}>
+                  Message
+                </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   required
                   placeholder="Your message…"
@@ -145,14 +190,24 @@ const Contact: React.FC = () => {
                 >
                   {status === 'sending' ? 'Sending…' : 'Send Message'}
                 </button>
-                {status === 'success' && (
-                  <p className="text-base text-success font-medium">
-                    Message sent — I'll be in touch!
-                  </p>
-                )}
-                {status === 'error' && (
-                  <p className="text-base text-error">Something went wrong. Email me directly.</p>
-                )}
+                {/* Always mounted so screen readers announce status changes */}
+                <div role="status" aria-live="polite" className="text-base">
+                  {status === 'success' && (
+                    <p className="text-success font-medium">Message sent — I'll be in touch!</p>
+                  )}
+                  {status === 'error' && (
+                    <p className="text-error">
+                      Something went wrong. Please email me at{' '}
+                      <a
+                        href={`mailto:${SITE.email}`}
+                        className="underline underline-offset-2 hover:text-ink"
+                      >
+                        {SITE.email}
+                      </a>
+                      .
+                    </p>
+                  )}
+                </div>
               </div>
             </form>
           </div>

@@ -15,5 +15,19 @@ export default defineConfig({
       '@app-types': fileURLToPath(new URL('./src/types', import.meta.url)),
     },
   },
+  build: {
+    // Keep hashed bundles apart from un-hashed public/assets images so they can be
+    // cached as immutable (see netlify.toml).
+    assetsDir: 'static',
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            { name: 'react-vendor', test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
+            { name: 'motion', test: /node_modules[\\/]framer-motion[\\/]/ },
+          ],
+        },
+      },
+    },
+  },
 })
-

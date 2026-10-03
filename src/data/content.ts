@@ -1,4 +1,29 @@
-import { ExperienceItem, ProjectItem, TestimonialItem } from '@app-types/index'
+import { ExperienceItem, LeadershipItem, ProjectItem, TestimonialItem } from '@app-types/index'
+import { getYearsOfExperience } from '@utils/experience'
+
+export const leadershipCards: LeadershipItem[] = [
+  {
+    title: () => `${getYearsOfExperience()}+ Years`,
+    desc: 'Engineering leadership across 3 companies & domains',
+    icon: 'award',
+  },
+  {
+    title: '3 Distributed Teams',
+    desc: 'Led across KL, Singapore & remote locations',
+    icon: 'users',
+  },
+  { title: 'Cross-functional', desc: 'Product, engineering & design alignment', icon: 'boxes' },
+  {
+    title: '10+ Mentored',
+    desc: 'Individual growth plans & team development',
+    icon: 'graduation',
+  },
+  {
+    title: 'Architecture',
+    desc: 'Legacy modernisation & service-oriented design',
+    icon: 'branch',
+  },
+]
 
 export const experiences: ExperienceItem[] = [
   {
