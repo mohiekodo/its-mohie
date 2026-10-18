@@ -33,7 +33,7 @@ const Projects: React.FC = () => {
                     {p.image ? (
                       <img
                         src={p.image}
-                        alt={`${p.title} screenshot`}
+                        alt={`${p.title} illustration`}
                         className="w-full h-full object-cover transition-fluid hover:scale-[1.03]"
                         loading="lazy"
                       />
